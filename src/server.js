@@ -1,12 +1,22 @@
 import sirv from 'sirv';
-import polka from 'polka';
+const express = require('express');
 import compression from 'compression';
 import * as sapper from '../__sapper__/server.js';
 
 const { PORT, NODE_ENV } = process.env;
 const dev = NODE_ENV === 'development';
 
-polka() // You can also use Express
+var server = express();
+
+server.disable('x-powered-by');
+
+// API Example:
+// import wikiApi from './api/wiki.js';
+// server
+// 	.use(compression({ threshold: 0 }))
+// 	.use('/api/wiki/v1', wikiApi);
+
+server
 	.use(
 		compression({ threshold: 0 }),
 		sirv('static', { dev }),
