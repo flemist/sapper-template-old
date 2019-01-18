@@ -1,14 +1,14 @@
-import sirv from 'sirv';
-const express = require('express');
-import compression from 'compression';
-import * as sapper from '../__sapper__/server.js';
+import sirv from 'sirv'
+import compression from 'compression'
+import * as sapper from '../__sapper__/server.js'
+const express = require('express')
 
-const { PORT, NODE_ENV } = process.env;
-const dev = NODE_ENV === 'development';
+const { PORT, NODE_ENV } = process.env
+const dev = NODE_ENV === 'development'
 
-var server = express();
+var server = express()
 
-server.disable('x-powered-by');
+server.disable('x-powered-by')
 
 // API Example:
 // import wikiApi from './api/wiki.js';
@@ -23,5 +23,5 @@ server
 		sapper.middleware()
 	)
 	.listen(PORT, err => {
-		if (err) console.log('error', err);
-	});
+		if (err) console.log('error', err)
+	})

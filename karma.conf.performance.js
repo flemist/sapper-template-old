@@ -1,9 +1,10 @@
 // Karma configuration
 // Generated on Mon Dec 10 2018 10:00:04 GMT+0200 (Eastern European Standard Time)
-const globals = require('rollup-plugin-node-globals')
-const builtins = require('rollup-plugin-node-builtins')
-const babel = require('rollup-plugin-babel')
-const { uglify } = require('rollup-plugin-uglify')
+
+// const globals = require('rollup-plugin-node-globals')
+// const builtins = require('rollup-plugin-node-builtins')
+// const babel = require('rollup-plugin-babel')
+// const { uglify } = require('rollup-plugin-uglify')
 
 module.exports = function (config) {
 	config.set({

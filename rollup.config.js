@@ -1,15 +1,15 @@
-import resolve from 'rollup-plugin-node-resolve';
-import replace from 'rollup-plugin-replace';
-import commonjs from 'rollup-plugin-commonjs';
-import svelte from 'rollup-plugin-svelte';
-import babel from 'rollup-plugin-babel';
-import { terser } from 'rollup-plugin-terser';
-import config from 'sapper/config/rollup.js';
-import pkg from './package.json';
+import resolve from 'rollup-plugin-node-resolve'
+import replace from 'rollup-plugin-replace'
+import commonjs from 'rollup-plugin-commonjs'
+import svelte from 'rollup-plugin-svelte'
+import babel from 'rollup-plugin-babel'
+import { terser } from 'rollup-plugin-terser'
+import config from 'sapper/config/rollup.js'
+import pkg from './package.json'
 
-const mode = process.env.NODE_ENV;
-const dev = mode === 'development';
-const legacy = !!process.env.SAPPER_LEGACY_BUILD;
+const mode = process.env.NODE_ENV
+const dev = mode === 'development'
+const legacy = !!process.env.SAPPER_LEGACY_BUILD
 
 export default {
 	client: {
@@ -75,6 +75,7 @@ export default {
 			commonjs()
 		],
 		external: Object.keys(pkg.dependencies).concat(
+			// eslint-disable-next-line node/no-deprecated-api
 			require('module').builtinModules || Object.keys(process.binding('natives'))
 		),
 
@@ -95,4 +96,4 @@ export default {
 			!dev && terser()
 		]
 	}
-};
+}
