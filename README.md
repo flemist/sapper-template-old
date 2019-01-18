@@ -16,9 +16,9 @@ npx degit NikolayMakhonin/sapper-template#custom <app name> && cd <app name> && 
 [npm-url]: https://npmjs.org/package/sapper-template
 [node-version-image]: https://img.shields.io/node/v/sapper-template.svg
 [node-version-url]: https://nodejs.org/en/download/
-[travis-image]: https://travis-ci.org/NikolayMakhonin/sapper-template.svg?branch=master
+[travis-image]: https://travis-ci.org/NikolayMakhonin/sapper-template.svg
 [travis-url]: https://travis-ci.org/NikolayMakhonin/sapper-template
-[coveralls-image]: https://coveralls.io/repos/github/NikolayMakhonin/sapper-template/badge.svg?branch=master
-[coveralls-url]: https://coveralls.io/github/NikolayMakhonin/sapper-template?branch=master
+[coveralls-image]: https://coveralls.io/repos/github/NikolayMakhonin/sapper-template/badge.svg
+[coveralls-url]: https://coveralls.io/github/NikolayMakhonin/sapper-template
 [downloads-image]: https://img.shields.io/npm/dm/sapper-template.svg
 [downloads-url]: https://npmjs.org/package/sapper-template
