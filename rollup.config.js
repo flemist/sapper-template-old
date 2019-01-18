@@ -25,7 +25,12 @@ export default {
 				hydratable: true,
 				emitCss: true
 			}),
-			resolve(),
+			resolve({
+				module: true,
+				browser: true,
+				preferBuiltins: true
+				// preferBuiltins:true without this it fails
+			}),
 			commonjs(),
 
 			legacy && babel({
@@ -34,7 +39,7 @@ export default {
 				exclude: ['node_modules/@babel/**'],
 				presets: [
 					['@babel/preset-env', {
-						targets: '> 0.25%, not dead'
+						targets: '> 0.01%, not dead'
 					}]
 				],
 				plugins: [
@@ -49,6 +54,9 @@ export default {
 				module: true
 			})
 		],
+
+		// temporary, pending Rollup 1.0
+		experimentalCodeSplitting: true
 	},
 
 	server: {
@@ -69,6 +77,9 @@ export default {
 		external: Object.keys(pkg.dependencies).concat(
 			require('module').builtinModules || Object.keys(process.binding('natives'))
 		),
+
+		// temporary, pending Rollup 1.0
+		experimentalCodeSplitting: true
 	},
 
 	serviceworker: {
