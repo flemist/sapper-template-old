@@ -2,45 +2,48 @@
 	<title>Sapper project template</title>
 </svelte:head>
 
-<h1>Great success!</h1>
+<Grid ref:grid />
 
-<figure>
-	<img alt='Borat' src='great-success.png'>
-	<figcaption>HIGH FIVE!</figcaption>
-</figure>
+<script>
+	import { loadUrl } from '../helpers/http';
 
-<p><strong>Try editing this file (routes/index.html) to test live reloading.</strong></p>
+	var getData = function (count) {
+		var countries = 'US,Germany,UK,Japan,Italy,Greece'.split(','),
+			data = new wijmo.collections.ObservableArray();
 
-<style>
-	h1, figure, p {
-		text-align: center;
-		margin: 0 auto;
+		for (var i = 0; i < count; i++) {
+			data.push({
+				id: i,
+				country: countries[i % countries.length],
+				date: new Date(2014, i % 12, i % 28),
+				amount: Math.random() * 10000,
+				active: i % 4 === 0
+			});
 	}
 
-	h1 {
-		font-size: 2.8em;
-		text-transform: uppercase;
-		font-weight: 700;
-		margin: 0 0 0.5em 0;
-	}
+		return data;
+	};
 
-	figure {
-		margin: 0 0 1em 0;
-	}
+	export default {
+		components: {
+			Grid: '../components/Grid.html'
+		},
+		oncreate() {
+			// const grid = this.refs.grid;
 
-	img {
-		width: 100%;
-		max-width: 400px;
-		margin: 0 0 1em 0;
+			// loadUrl('GET', 
+			// 	'/api/wiki/v1/tags',
+			// 	null, 
+			// 	function(xmlhttp) 
+			// 	{
+			// 		var obj = JSON.parse(xmlhttp.responseText);
+			// 		grid.set({ data: obj });
+			// 	}, 
+			// 	function(xmlhttp) 
+			// 	{
+			// 		console.log("Error:\r\n" + xmlhttp.responseText);
+			// 	}
+			// );
 	}
-
-	p {
-		margin: 1em auto;
-	}
-
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
-		}
-	}
-</style>
+	};
+</script>
