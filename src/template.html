@@ -5,11 +5,35 @@
 	<meta name='viewport' content='width=device-width'>
 	<meta name='theme-color' content='#aa1e1e'>
 
+	<!-- region CrossBrowsing support -->
+
+	<script src="modernizr-custom.js"></script>
+	<script src="fetch.iife.js"></script>
+
+	<!-- endregion CrossBrowsing support -->
+
+	<!-- region CrossBrowsing support -->
+
+	<!-- <script src="polyfill.min.js"></script> -->
+	<script src="//cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
+
+	<!-- endregion CrossBrowsing support -->
+
+	<!-- region Sapper -->
+
 	%sapper.base%
 
+	<!-- endregion Sapper -->
+
+	<!-- <link rel="stylesheet" href="bootstrap.min.css"> -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	
 	<link rel='stylesheet' href='global.css'>
-	<link rel='manifest' href='manifest.json'>
 	<link rel='icon' type='image/png' href='favicon.png'>
+
+	<!-- region Sapper -->
+
+	<link rel='manifest' href='manifest.json'>
 
 	<!-- Sapper generates a <style> tag containing critical CSS
 	     for the current page. CSS for the rest of the app is
@@ -19,8 +43,47 @@
 	<!-- This contains the contents of the <svelte:head> component, if
 	     the current page has one -->
 	%sapper.head%
+
+	<!-- endregion Sapper -->
 </head>
 <body>
+	<!-- region DEBUG -->
+
+	<script type="text/javascript">
+		function appendText(el, str) {
+			var div = document.createElement('div');
+			div.innerText = str;
+			el.appendChild(div);
+		}
+		
+		window.addEventListener("error", function(e) {
+			appendText(document.body, "e.error.toString()");
+			return false;
+		});
+		window.addEventListener('unhandledrejection', function (e) {
+			appendText(document.body, "e.reason.message");
+			return false;
+		})
+		window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
+			alert("Error occured: " + errorMsg);//or any message
+			return false;
+		};
+		
+		
+		setTimeout(function() {
+			//console.err("wer");
+			//throw "Test error";				
+		}, 10);
+		
+		appendText(document.body, "WRITE TEST");
+	</script>
+	<noscript>NO SCRIPT<br></noscript>
+	TEST5
+	
+	<!-- endregion DEBUG -->
+
+	<!-- region Sapper -->
+
 	<!-- The application will be rendered inside this element,
 	     because `app/client.js` references it -->
 	<div id='sapper'>%sapper.html%</div>
@@ -29,5 +92,7 @@
 	     and anything else it needs to hydrate the app and
 	     initialise the router -->
 	%sapper.scripts%
+
+	<!-- endregion Sapper -->
 </body>
 </html>

@@ -6,7 +6,7 @@ const express = require('express')
 const { PORT, NODE_ENV } = process.env
 const dev = NODE_ENV === 'development'
 
-var server = express()
+let server = express()
 
 server.disable('x-powered-by')
 
