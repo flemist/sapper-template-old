@@ -12,7 +12,7 @@
     "watch": "mocha -r ./babel-register --recursive --exclude **/profiling/** --exclude **/src/** --watch --watch-extensions \"js){100}|^(((?!([\\\\/](dist|tmp|node_modules|reports|\\.[^\\\\/]*)[\\\\/]|\\.(log|bak)$)).)*\" .\\test\\tests --recursive",
     "perf": "mocha -r ./babel-register ./test/performance/**/*.js",
     "perf:karma": "karma start karma.conf.performance.js",
-    "test-travis": "istanbul cover node_modules/mocha/bin/_mocha -r ./babel-register --recursive --report lcovonly -- --reporter spec --check-leaks test/",
+    "test-travis": "istanbul cover node_modules/mocha/bin/_mocha -r ./babel-register --recursive --exclude **/profiling/** --exclude **/src/** \"./test/tests\" --recursive --report lcovonly -- --reporter spec --check-leaks",
 
     "dev": "sapper dev",
     "build": "sapper build --legacy",
