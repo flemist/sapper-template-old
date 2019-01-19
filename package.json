@@ -8,11 +8,11 @@
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint --plugin markdown --ext js,md .",
-    "test": "mocha -r ./babel-register --recursive --exclude **/src/** .\\test\\tests --recursive",
-    "watch": "mocha -r ./babel-register --recursive --exclude **/src/** --watch --watch-extensions \"js){100}|^(((?!([\\\\/](dist|tmp|node_modules|reports|\\.[^\\\\/]*)[\\\\/]|\\.(log|bak)$)).)*\" .\\test\\tests --recursive",
+    "test": "mocha -r ./babel-register ./test/tests/ --recursive --exclude **/src/**",
+    "watch": "mocha -r ./babel-register ./test/tests/ --recursive --exclude **/src/** --watch --watch-extensions \"js){100}|^(((?!([\\\\/](dist|tmp|node_modules|reports|\\.[^\\\\/]*)[\\\\/]|\\.(log|bak)$)).)*\" .\\test\\tests --recursive",
     "perf": "mocha -r ./babel-register ./test/performance/**/*.js",
     "perf:karma": "karma start karma.conf.performance.js",
-    "test-travis": "istanbul cover node_modules/mocha/bin/_mocha -r ./babel-register --recursive --exclude **/src/** --report lcovonly -- --reporter spec --check-leaks test/tests/",
+    "test-travis": "istanbul cover node_modules/mocha/bin/_mocha -r ./babel-register ./test/tests/ --recursive --report lcovonly -- --reporter spec --check-leaks",
 
     "dev": "sapper dev",
     "build": "sapper build --legacy",
@@ -34,6 +34,7 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-transform-async-to-generator": "^7.2.0",
     "@babel/plugin-transform-parameters": "^7.2.0",
+    "@babel/plugin-proposal-class-properties": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
     "@babel/register": "^7.0.0",
     "@metahub/karma-rollup-preprocessor": "^4.0.0",
