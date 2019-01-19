@@ -6,10 +6,10 @@
 
 # Description
 
-For quickly create NodeJs progressive web application using this command:
+For quickly create NodeJs progressive web application for data analisis using this command:
 
 ```bash
-npx degit NikolayMakhonin/sapper-template#custom <app name> && cd <app name> && npm i && npm run test
+npx degit NikolayMakhonin/sapper-template#custom_data <app name> && cd <app name> && npm i && npm run test
 ```
 
 [npm-image]: https://img.shields.io/npm/v/sapper-template.svg
