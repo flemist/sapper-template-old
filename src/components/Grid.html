@@ -19,30 +19,30 @@
 </div>
 
 <script>
-	import { loadUrl, jsonPatchRequest } from '../helpers/http';
-	import { simpleClone } from '../helpers/objects';
-	import { throttle } from '../helpers/timers';
-	import jsonPatch from 'fast-json-patch';
+	import { loadUrl, jsonPatchRequest } from '../helpers/http'
+	import { simpleClone } from '../helpers/objects'
+	import { throttle } from '../helpers/timers'
+	// import jsonPatch from 'fast-json-patch';
 
 	// https://demos.wijmo.com/5/Angular/WijmoHelp/WijmoHelp/topic/wijmo.grid.FlexGrid.Class.html
 
-	var deleteHandler = function(grid, deleteConfirmPopup) {
-		grid.deletingRow.addHandler((s, e) => {
-			e.cancel = true;
-			
-			deleteConfirmPopup.show(true, sender => {
-				if (sender.dialogResult == 'wj-hide-ok') {
-					var view = grid.collectionView;
-					view.remove(view.currentItem);
+	function deleteHandler ( grid, deleteConfirmPopup ) {
+		grid.deletingRow.addHandler( ( s, e ) => {
+			e.cancel = true
+
+			deleteConfirmPopup.show( true, sender => {
+				if ( sender.dialogResult === 'wj-hide-ok' ) {
+					const view = grid.collectionView
+					view.remove( view.currentItem )
 				} else {
-					e.cancel = true;
+					e.cancel = true
 				}
-			});		
-		});
+			})
+		})
 
 		// grid.deletedRow.addHandler((s, e) => {
 		// 	e.data = true;
-			
+
 		// 	deleteConfirmPopup.show(true, sender => {
 		// 		if (sender.dialogResult == 'wj-hide-ok') {
 		// 			var view = grid.collectionView;
@@ -50,87 +50,83 @@
 		// 		} else {
 		// 			e.cancel = true;
 		// 		}
-		// 	});		
+		// 	});
 		// });
 	}
 
-	var anyChanges = function(grid, handler) {
-		grid.cellEditEnded.addHandler((s, e) => handler(s, e));
-		grid.deletedRow.addHandler((s, e) => handler(s, e));
-		grid.pasted.addHandler((s, e) => handler(s, e));
-		grid.pastedCell.addHandler((s, e) => handler(s, e));
-		grid.rowAdded.addHandler((s, e) => handler(s, e));
-		grid.rowEditEnded.addHandler((s, e) => handler(s, e));
+	function anyChanges ( grid, handler ) {
+		grid.cellEditEnded.addHandler( ( s, e ) => handler( s, e ) )
+		grid.deletedRow.addHandler( ( s, e ) => handler( s, e ) )
+		grid.pasted.addHandler( ( s, e ) => handler( s, e ) )
+		grid.pastedCell.addHandler( ( s, e ) => handler( s, e ) )
+		grid.rowAdded.addHandler( ( s, e ) => handler( s, e ) )
+		grid.rowEditEnded.addHandler( ( s, e ) => handler( s, e ) )
 	}
 
 	export default {
-		data() {
-			return {
-				data: [{}]
-			}
+		data () {
+			return { data: [{}]}
 		},
-		methods: {
-			update() {}
-		},
-		onupdate({ changed, current, previous }) {
-			if (changed.data) {
+		methods: { update () {} },
+		onupdate ({ changed, current, previous }) {
+			if ( changed.data ) {
 
 			}
 		},
-		oncreate() {
-			this.grid = new wijmo.grid.FlexGrid(this.refs.grid, {
+		oncreate () {
+			this.grid = new wijmo.grid.FlexGrid( this.refs.grid, {
 				allowAddNew: true,
 				allowDelete: true
-			});
+			})
 
-			loadUrl('GET', 
-				'/api/wiki/v1/tags',
-				null,
-				null,
-				xmlhttp =>
-				{
-					var obj = JSON.parse(xmlhttp.responseText);
-					var data = { data: obj };
-					this.set(data);
-					this.grid.itemsSource = simpleClone(data.data);
-					this.prevData = simpleClone(data.data);
-				}, 
-				xmlhttp =>
-				{
-					console.log("Error:\r\n" + xmlhttp.responseText);
-				}
-			);
+			// loadUrl('GET',
+			// 	'/api/wiki/v1/tags',
+			// 	null,
+			// 	null,
+			// 	xmlhttp =>
+			// 	{
+			// 		var obj = JSON.parse(xmlhttp.responseText);
+			// 		var data = { data: obj };
+			// 		this.set(data);
+			// 		this.grid.itemsSource = simpleClone(data.data);
+			// 		this.prevData = simpleClone(data.data);
+			// 	},
+			// 	xmlhttp =>
+			// 	{
+			// 		console.log("Error:\r\n" + xmlhttp.responseText);
+			// 	}
+			// );
 
-			this.prevData = null;
+			this.prevData = null
 
-			this.saveChanges = throttle(() => {
-				var { data } = this.get();
-				var newData = simpleClone(data);
-				var patch = jsonPatch.compare({ tags: this.prevData }, { tags: newData });
-				jsonPatchRequest('PATCH', 
-					'/api/wiki/v1/tags/',
-					JSON.stringify(patch), 
-					function(xmlhttp) 
-					{
-						//var obj = JSON.parse(xmlhttp.responseText);
-						//this.prevData = newData;
-					}, 
-					function(xmlhttp) 
-					{
-						console.log("Error:\r\n" + xmlhttp.responseText);
-					}
-				);
-			}, 2000);
+			this.saveChanges = throttle( () => {
+				const { data } = this.get()
+				const newData = simpleClone( data )
+			// let patch = jsonPatch.compare({ tags: this.prevData }, { tags: newData });
+			// jsonPatchRequest('PATCH',
+			// 	'/api/wiki/v1/tags/',
+			// 	JSON.stringify(patch),
+			// 	function(xmlhttp)
+			// 	{
+			// 		//var obj = JSON.parse(xmlhttp.responseText);
+			// 		//this.prevData = newData;
+			// 	},
+			// 	function(xmlhttp)
+			// 	{
+			// 		console.log("Error:\r\n" + xmlhttp.responseText);
+			// 	}
+			// );
+			}, 2000 )
 
-			this.update = throttle(() => {
-				this.set({ data: this.grid.itemsSource });
-				this.saveChanges();
-			}, 50);
+			this.update = throttle( () => {
+				this.set({ data: this.grid.itemsSource })
+				this.saveChanges()
+			}, 50 )
 
-			anyChanges(this.grid, this.update);
+			anyChanges( this.grid, this.update )
 
-			var deleteConfirmPopup = new wijmo.input.Popup(this.refs.deleteConfirm);
-			deleteHandler(this.grid, deleteConfirmPopup);
+			const deleteConfirmPopup = new wijmo.input.Popup( this.refs.deleteConfirm )
+			deleteHandler( this.grid, deleteConfirmPopup )
 		}
-	};
+	}
 </script>

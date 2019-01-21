@@ -5,30 +5,29 @@
 <Grid ref:grid />
 
 <script>
-	import { loadUrl } from '../helpers/http';
+	import { loadUrl } from '../helpers/http'
 
-	var getData = function (count) {
-		var countries = 'US,Germany,UK,Japan,Italy,Greece'.split(','),
-			data = new wijmo.collections.ObservableArray();
+	function getData ( count ) {
+		const countries = 'US,Germany,UK,Japan,Italy,Greece'.split( ',' )
 
-		for (var i = 0; i < count; i++) {
+		const data = new wijmo.collections.ObservableArray()
+
+		for ( let i = 0; i < count; i++ ) {
 			data.push({
-				id: i,
+				id     : i,
 				country: countries[i % countries.length],
-				date: new Date(2014, i % 12, i % 28),
-				amount: Math.random() * 10000,
-				active: i % 4 === 0
-			});
+				date   : new Date( 2014, i % 12, i % 28 ),
+				amount : Math.random() * 10000,
+				active : i % 4 === 0
+			})
+		}
+
+		return data
 	}
 
-		return data;
-	};
-
 	export default {
-		components: {
-			Grid: '../components/Grid.html'
-		},
-		oncreate() {
+		components: { Grid: '../components/Grid.html' },
+		oncreate () {
 			// const grid = this.refs.grid;
 
 			// loadUrl('GET', 
@@ -44,6 +43,6 @@
 			// 		console.log("Error:\r\n" + xmlhttp.responseText);
 			// 	}
 			// );
+		}
 	}
-	};
 </script>

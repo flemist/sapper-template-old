@@ -10,8 +10,8 @@
 const posts = [
 	{
 		title: 'What is Sapper?',
-		slug: 'what-is-sapper',
-		html: `
+		slug : 'what-is-sapper',
+		html : `
 			<p>First, you have to know what <a href='https://svelte.technology'>Svelte</a> is. Svelte is a UI framework with a bold new idea: rather than providing a library that you write code with (like React or Vue, for example), it's a compiler that turns your components into highly optimized vanilla JavaScript. If you haven't already read the <a href='https://svelte.technology/blog/frameworks-without-the-framework'>introductory blog post</a>, you should!</p>
 
 			<p>Sapper is a Next.js-style framework (<a href='blog/how-is-sapper-different-from-next'>more on that here</a>) built around Svelte. It makes it embarrassingly easy to create extremely high performance web apps. Out of the box, you get:</p>
@@ -29,8 +29,8 @@ const posts = [
 
 	{
 		title: 'How to use Sapper',
-		slug: 'how-to-use-sapper',
-		html: `
+		slug : 'how-to-use-sapper',
+		html : `
 			<h2>Step one</h2>
 			<p>Create a new project, using <a href='https://github.com/Rich-Harris/degit'>degit</a>:</p>
 
@@ -53,8 +53,8 @@ const posts = [
 
 	{
 		title: 'Why the name?',
-		slug: 'why-the-name',
-		html: `
+		slug : 'why-the-name',
+		html : `
 			<p>In war, the soldiers who build bridges, repair roads, clear minefields and conduct demolitions — all under combat conditions — are known as <em>sappers</em>.</p>
 
 			<p>For web developers, the stakes are generally lower than those for combat engineers. But we face our own hostile environment: underpowered devices, poor network connections, and the complexity inherent in front-end engineering. Sapper, which is short for <strong>S</strong>velte <strong>app</strong> mak<strong>er</strong>, is your courageous and dutiful ally.</p>
@@ -63,8 +63,8 @@ const posts = [
 
 	{
 		title: 'How is Sapper different from Next.js?',
-		slug: 'how-is-sapper-different-from-next',
-		html: `
+		slug : 'how-is-sapper-different-from-next',
+		html : `
 			<p><a href='https://github.com/zeit/next.js/'>Next.js</a> is a React framework from <a href='https://zeit.co'>Zeit</a>, and is the inspiration for Sapper. There are a few notable differences, however:</p>
 
 			<ul>
@@ -78,15 +78,15 @@ const posts = [
 
 	{
 		title: 'How can I get involved?',
-		slug: 'how-can-i-get-involved',
-		html: `
+		slug : 'how-can-i-get-involved',
+		html : `
 			<p>We're so glad you asked! Come on over to the <a href='https://github.com/sveltejs/svelte'>Svelte</a> and <a href='https://github.com/sveltejs/sapper'>Sapper</a> repos, and join us in the <a href='https://discord.gg/yy75DKs'>Discord chatroom</a>. Everyone is welcome, especially you!</p>
 		`
 	}
 ]
 
-posts.forEach(post => {
-	post.html = post.html.replace(/^\t{3}/gm, '')
+posts.forEach( post => {
+	post.html = post.html.replace( /^\t{3}/gm, '' )
 })
 
 export default posts

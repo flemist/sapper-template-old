@@ -1,3 +1,3 @@
 import assert from 'assert'
 
-console.log('Performance test')
+console.log( 'Performance test' )
